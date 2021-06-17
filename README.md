@@ -9,6 +9,7 @@ In the future this project might be continued.
 
 ______________________________________________________________________
 ## Credits
-- [Yusuf Olokoba](mailto:olokobayusuf@gmail.com)
-The Project uses the NatStep Pedometer API by https://github.com/olokobayusuf
+
+The Project uses the NatStep Pedometer API by  [Yusuf Olokoba](mailto:olokobayusuf@gmail.com)
+
 Link to git repository: https://github.com/natsuite/NatStep
