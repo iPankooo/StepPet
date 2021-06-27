@@ -17,11 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Statistik.unity
     guid: 08049f6a593c7ce40b325841d91495e8
-  - enabled: 0
-    path: Assets/Scenes/Hinweise.unity
-    guid: c2c81837b3a1e8e4885012fa6c562c9e
   - enabled: 1
     path: Assets/Scenes/Impressum.unity
     guid: 336646aa973b5554e9e75be977c1b96a
+  - enabled: 0
+    path: Assets/Scenes/Test.unity
+    guid: 9a8c71ee730215041b0114321d86cbd0
+  - enabled: 0
+    path: Assets/Scenes/TestAR.unity
+    guid: 4c8954e9afd25e14cb928736d466007b
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2ea82d92c842b1c45bfe0cdb38ea328e, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 7aa937f770261264ba4850f41fc55bdb, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9f2b299b16f12294c93eb6582e4ff402, type: 2}

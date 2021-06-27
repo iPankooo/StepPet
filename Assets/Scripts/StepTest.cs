@@ -11,6 +11,7 @@ namespace PedometerU.Tests
     using UnityEngine.UI;
 #if PLATFORM_ANDROID
     using UnityEngine.Android;
+    using System;
 #endif
 
 
@@ -19,19 +20,26 @@ namespace PedometerU.Tests
         GameObject dialog = null;
         public Text stepText;
         public Text distanceMeterText;
-        
+        public Text distanceKMText;
+
         //public Text distanceFeetText;
+
+        //public Text currentStepgoal;
+        //public Text newStepgoal;
+        private float stepgoal = 8500;
+        public Image CircleProgressBar;
 
         private Pedometer pedometer;
         private int loadSteps;
-        public float loadDistance;
-        public float distancef;
-        public float adderD;
+        private float loadDistance;
+        private int adderS;
+
+        
 
         private void Start()
         {
-          
-        //Asking for Permission, as newer Versions of Android Require this.
+
+            //Asking for Permission, as newer Versions of Android Require this.
 #if PLATFORM_ANDROID
 
             if (!Permission.HasUserAuthorizedPermission("android.permission.ACTIVITY_RECOGNITION"))
@@ -51,13 +59,16 @@ namespace PedometerU.Tests
             UpdateD(loadDistance);
             OnStep(loadSteps, loadDistance);
 
+            
             //Making a button to Reset Data
-           
+
+            CircleProgressBar = GetComponent<Image>();
         }
 
+      
+       
         public void ResetBtn()
         {
-
             //PlayerPrefs.DeleteKey("Steps Since App Runs");
             PlayerPrefs.DeleteAll();
             UpdateS(0);
@@ -66,92 +77,107 @@ namespace PedometerU.Tests
             Debug.Log(PlayerPrefs.GetInt("Steps Since App Runs"));
         }
 
+       
         public void OnStep(int steps, double distance)
         {
             // Display the values     
             //stepText.text=steps;
 
             //adding the new Steps to the old steps
-            int adderS = loadSteps + steps;
-            
 
+            float distancef = (float)distance;
+            
+            
             if (loadSteps == steps)
             {
+
                 stepText.text = loadSteps.ToString();
+
+                distanceMeterText.text = loadDistance.ToString();
+
+                float loadKM = loadDistance / 1000;
+                distanceKMText.text = loadKM.ToString();
+
+                //progressbar
+                //float adderSf = loadSteps;
+                //float stepgoalf = stepgoal;
+                //circlebar(adderSf, stepgoalf);
+
             }
             else
             {
-               
+                adderS = loadSteps + steps;
+
                 stepText.text = adderS.ToString();
+                SaveVarInt(adderS);
+
+                    
+                float adderD = loadDistance + distancef;
+                distanceMeterText.text = adderD.ToString();
+                SaveVarFloat(adderD);
+
+                float adderKM = adderD / 1000;
+                distanceKMText.text = adderKM.ToString();
+
+                //progressbar
+                //float adderSf = adderS;
+                //float stepgoalf = stepgoal;
+                //circlebar(adderSf, stepgoalf);
             }
 
-
-            //transferSteps = steps;
 
             // Distance in feet
             //distanceFeetText.text = (distance  *3.28084).ToString("F2") + " f";
             // Distance in meter
             //distanceMeterText.text = (distance).ToString("F2") + " m";
-
-            distancef = (float)distance;
-            adderD = loadDistance + distancef; 
-
-            
-
-            if (loadDistance == distancef)
-            {
-                distanceMeterText.text = loadDistance.ToString();
-
-            }
-            else
-            {
-
-                distanceMeterText.text = adderD.ToString();
-            }
-
-
-            SaveVar(adderS,adderD);
-            
         }
+
 
         private void OnDisable()
         {
             // Release the pedometer
             pedometer.Dispose();
             pedometer = null;
-            
+
         }
 
-        public void SaveVar(int stepssave,float distancesave)
+        private void circlebar(float adderSf, float stepgoalf)
         {
-            
+            float percentage = adderSf / stepgoalf;
+
+            if (percentage > 0.999)
+            {
+                percentage = 1.0f;
+            }
+            CircleProgressBar.GetComponent<Image>().fillAmount = percentage;
+        }
+
+        public void SaveVarInt(int stepssave)
+        {
             PlayerPrefs.SetInt("Steps Since App Runs", stepssave);
             Debug.Log(PlayerPrefs.GetInt("Steps Since App Runs"));
 
-            PlayerPrefs.SetFloat("Distance Since App Runs", distancesave);
-            Debug.Log(PlayerPrefs.GetInt("Distance Since App Runs"));
-
+            
         }
 
-       
-        
+        public void SaveVarFloat(float distancesave)
+        {
+            PlayerPrefs.SetFloat("Distance Since App Runs", distancesave);
+            Debug.Log(PlayerPrefs.GetInt("Distance Since App Runs"));
+        }
+
+   
 
         public int UpdateS(int loaderS)
         {
             loadSteps = PlayerPrefs.GetInt("Steps Since App Runs");
-            loadDistance = PlayerPrefs.GetFloat("Distance Since App Runs");
-
             return loadSteps;
-            
-
             //TODO Reset at 12am.
         }
 
         public float UpdateD(float loaderD)
         {
-            
             loadDistance = PlayerPrefs.GetFloat("Distance Since App Runs");
-
             return loadDistance;
 
             //TODO Reset at 12am.

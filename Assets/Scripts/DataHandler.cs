@@ -16,7 +16,7 @@ public class DataHandler : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<DataHandler    >();
+                instance = FindObjectOfType<DataHandler>();
             }
             return instance;
         } 

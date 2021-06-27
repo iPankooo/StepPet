@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 24679827}
   - component: {fileID: 24679826}
   - component: {fileID: 24679825}
-  - component: {fileID: 24679824}
   m_Layer: 5
   m_Name: Distance in KM
   m_TagString: Untagged
@@ -165,19 +164,6 @@ RectTransform:
   m_AnchoredPosition: {x: 7.8595886, y: 35}
   m_SizeDelta: {x: 206.1531, y: -408.3906}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &24679824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24679822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 942f3b986262d504a9d3a2838a9a2e20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceKMText: {fileID: 93556356}
 --- !u!114 &24679825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,6 +862,7 @@ GameObject:
   - component: {fileID: 401942233}
   - component: {fileID: 401942232}
   - component: {fileID: 401942235}
+  - component: {fileID: 401942236}
   m_Layer: 5
   m_Name: UI_Statistics
   m_TagString: Untagged
@@ -981,9 +968,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepText: {fileID: 675111800}
   distanceMeterText: {fileID: 461573565}
-  loadDistance: 0
-  distancef: 0
-  adderD: 0
+  distanceKMText: {fileID: 93556356}
+--- !u!114 &401942236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401942230}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9b567528632974aa973264b612bb98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepStatText: {fileID: 675111800}
+  distanceStatMeterText: {fileID: 461573565}
+  distanceStatKMText: {fileID: 93556356}
 --- !u!1 &416924993
 GameObject:
   m_ObjectHideFlags: 0
